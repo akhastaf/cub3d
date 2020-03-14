@@ -6,7 +6,7 @@ void    render_player(t_game *game)
     t_line l;
 
     l.d = 40 * SCALE;
-    set_pos(&l.pos, game->player.pos);
+    copy_pos(&l.pos, game->player.pos);
     l.alpha = game->player.rotation_angle;
     l.pos.x *= SCALE;
     l.pos.y *= SCALE;
@@ -31,5 +31,5 @@ void    move_player(t_game *game)
     pos.y = game->player.pos.y + sin(game->player.rotation_angle) * step;
 
     if (!hit_wall(game, pos))
-        set_pos(&(game->player.pos), pos);
+        set_pos(&(game->player.pos), pos.x , pos.y);
 }

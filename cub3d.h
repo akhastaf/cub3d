@@ -3,9 +3,15 @@
 #include "mlx.h"
 #include "setting/setting.h"
 #include "game/game.h"
+#include "texture/texture.h"
+#include "gnl/gnl.h"
+#include "utils/utils.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
 #define TILE_SIZE 64
 # define SCALE 0.2
 # define MAX_INT 2147483647
@@ -23,8 +29,8 @@ void    draw_cercle(t_game *game, t_cercle cercle);
 void    render_map(t_game *game);
 void    render_player(t_game *game);
 void    setup(t_game *game);
-void    copy_pos(t_pos *d, t_pos s);
-void    set_pos(t_pos *pos, t_pos s);
+t_pos    copy_pos(t_pos *d, t_pos s);
+t_pos   set_pos(t_pos *pos, float x, float y);
 int     hit_wall(t_game *game, t_pos pos);
 void    move_player(t_game *game);
 void    cast_all_rays(t_game *game);
@@ -33,4 +39,26 @@ void    render_rays(t_game *game);
 float   normalize_angle(float angle);
 float   distance(float x1, float y1, float x2, float y2);
 void    wall(t_game *game);
+int     ft_check(t_map map, int r, int c);
+int     map_check(t_map map);
+
+void    set_text(t_game *game);
+int  get_text_color(t_text text, int x, int y);
+int load_texture(t_game *game);
+int     get_texture(t_game *game, int i);
+int    load(t_game *game, char *path);
+
+int     load_resolution(t_game *game, char *line);
+int     load_cf_color(char *line);
+int    load_text_no(t_game *game, char *line);
+int    load_text_so(t_game *game, char *line);
+int    load_text_we(t_game *game, char *line);
+int    load_text_ea(t_game *game, char *line);
+int    load_sprit(t_game *game, char *line);
+int     ft_chek_inrang(int n, int min, int max);
+int		rgbtoint(int r, int g, int b);
+void    skip(char **line, char c);
+int     find_map(char *line);
+int    load_map(t_game *game, char *line);
+int     ft_is_player(char p);
 #endif
